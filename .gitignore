@@ -11,6 +11,6 @@
 # Maven
 **/target/**
 
-#Gradle
+# Gradle
 **/.gradle/**
 
