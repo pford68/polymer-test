@@ -1,0 +1,9 @@
+<link rel="import" href="../lib/bower_components/polymer/polymer.html">
+<link rel="import" href="../lib/bower_components/polymer-ajax/polymer-ajax.html">
+
+<polymer-element name="ajax-response" attributes="url" noscript>
+    <template>
+        <polymer-ajax url="{{url}}" auto response="{{resp}}"></polymer-ajax>
+        <textarea value="{{resp}}"></textarea>
+    </template>
+</polymer-element>
