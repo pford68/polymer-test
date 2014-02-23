@@ -10,14 +10,20 @@ repositories {
     mavenCentral()
 }
 
-
+/*
 war {
     from('bower_components'){
         include 'platform/**'
+        include 'polymer/**'
         include 'polymer-ajax/**'
         into 'lib'
     }
 }
+war {
+    from('bower_components'){
+        into 'lib'
+    }
+}*/
 
 buildscript {
     repositories {
