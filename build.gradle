@@ -11,6 +11,9 @@ repositories {
 }
 
 /*
+These work, but in retrospect, since I'll use all polymer elements eventually, I just
+put bower_components in lib.
+
 war {
     from('bower_components'){
         include 'platform/**'

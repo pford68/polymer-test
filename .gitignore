@@ -13,4 +13,6 @@
 
 # Gradle
 **/.gradle/**
+out
+build
 
