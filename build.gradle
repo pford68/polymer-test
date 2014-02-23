@@ -10,23 +10,6 @@ repositories {
     mavenCentral()
 }
 
-/*
-These work, but in retrospect, since I'll use all polymer elements eventually, I just
-put bower_components in lib.
-
-war {
-    from('bower_components'){
-        include 'platform/**'
-        include 'polymer/**'
-        include 'polymer-ajax/**'
-        into 'lib'
-    }
-}
-war {
-    from('bower_components'){
-        into 'lib'
-    }
-}*/
 
 buildscript {
     repositories {
