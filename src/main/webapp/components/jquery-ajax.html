@@ -1,0 +1,21 @@
+<link rel="import" href="../lib/bower_components/polymer/polymer.html">
+<script src="../lib/jquery/jquery-1.9.0.min.js"></script>
+
+<polymer-element name="jquery-ajax" attributes="url" noscript>
+    <template>
+        <div id="result" data-url="{{url}}"></div>
+        <script>
+            (function($){
+                var panel = document.getElementById("result");
+                var url = panel.getAttribute("data-url");
+                $.get(url).then(function(resp){
+                    if (Array.isArray(resp)){
+                        resp.forEach(function(item){
+                            panel.innerHTML += item.preference.name + ":  " + item.preference.value + "<br />";
+                        })
+                    }
+                });
+            })(jQuery);
+        </script>
+    </template>
+</polymer-element>
