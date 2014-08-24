@@ -1,0 +1,9 @@
+<link rel="import" href="../../lib/polymer/polymer.html">
+<link rel="import" href="../../lib/core-ajax/core-ajax.html">
+
+<polymer-element name="ajax-response" attributes="url" noscript>
+    <template>
+        <core-ajax url="{{url}}" auto response="{{resp}}"></core-ajax>
+        <textarea value="{{resp}}"></textarea>
+    </template>
+</polymer-element>
