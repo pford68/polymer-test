@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
-    clean = require('gulp-clean'),
+    clean = require('gulp-rimraf'),
     livereload = require('gulp-livereload'),   // See Note 1 above
     server = require("./server");
 
@@ -22,7 +22,7 @@ gulp.task('lint', function() {
 });
 
 // Browserify task
-gulp.task('browserify', function() {
+gulp.task('browserify', function() {  /*
     // Single point of entry (make sure not to src ALL your files, browserify will figure it out for you)
     gulp.src(['./src/js/main.js'])
         .pipe(browserify({
@@ -32,7 +32,7 @@ gulp.task('browserify', function() {
         // Bundle to a single file
         .pipe(concat('bundle.js'))
         // Output it to our dist folder
-        .pipe(gulp.dest('dist/js'));
+        .pipe(gulp.dest('dist/js'));  */
 });
 
 // Views task

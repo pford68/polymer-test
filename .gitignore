@@ -11,8 +11,6 @@
 # Maven
 **/target/**
 
-# Gradle
-**/.gradle/**
-out
-build
+# Gulp
+dist
 
