@@ -5,7 +5,10 @@ var express = require("express"),
     app = express();
 
 app.use(methodOverride());
-app.use(bodyParser());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+// parse application/json
+app.use(bodyParser.json());
 app.use("/polymer-test", express.static(__dirname + "/dist/"));
 
 app.get("/preferences/:userId", function(req, res){
