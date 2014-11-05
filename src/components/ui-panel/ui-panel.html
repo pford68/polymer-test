@@ -1,0 +1,22 @@
+<!-- -->
+<link rel="import" href="../../lib/polymer/polymer.html">
+
+<polymer-element name="ui-panel" attributes="left top right bottom width height moniker data">
+    <template>
+        <style>
+            :host {
+                border: solid black 1px;
+                position: absolute;
+                display: block;
+            }
+        </style>
+        <content></content>
+        <template repeat="{{item in data}}">
+            <div>{{item.position}}</div>
+        </template>
+    </template>
+
+
+</polymer-element>
+
+<script type="text/javascript" src="ui-panel.js"></script>

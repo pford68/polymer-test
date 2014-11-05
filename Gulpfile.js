@@ -9,9 +9,15 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
-    clean = require('gulp-rimraf'),
+    del = require('del'),
     livereload = require('gulp-livereload'),   // See Note 1 above
-    server = require("./server");
+    server = require("./server"),
+    config = require('./config/dev.json');
+
+gulp.task('clean', function(done){
+    del.sync('./dist');
+    done();
+});
 
 // JSHint task
 gulp.task('lint', function() {
@@ -33,32 +39,33 @@ gulp.task('browserify', function() {  /*
         .pipe(concat('bundle.js'))
         // Output it to our dist folder
         .pipe(gulp.dest('dist/js'));  */
+    gulp.src([
+        './src/**/*.js',
+        '!./src/lib/**/*.js'
+    ], { base: './src' })
+        // Will be put in the dist/images folder
+        .pipe(gulp.dest('dist'));
 });
 
 // Views task
 gulp.task('views', function() {
-    // Get our index.html
-    gulp.src('./src/*.html')
-        // And put it in the dist folder
-        .pipe(gulp.dest('dist/'));
-
-    gulp.src('./src/components/**')
+    gulp.src([
+        './src/**/*.html',
+        './src/**/*.css',
+        '!./src/lib/**'
+    ], { base: './src' })
         // Will be put in the dist/images folder
-        .pipe(gulp.dest('dist/components/'));
-
-    gulp.src('./src/lib/**')
-        // Will be put in the dist/lib folder
-        .pipe(gulp.dest('dist/lib/'));
+        .pipe(gulp.dest('dist'));
 });
 
 // Watching for changes to JS src files.
 gulp.task('watch', ['lint', 'browserify'], function() {
     // Watch our scripts
-    gulp.watch(['./src/js/*.js', './src/*.json'],[
+    gulp.watch(['./src/**/*.js', './src/**/*.json', '!./src/lib/**'],[
         'lint',
         'browserify'
     ]);
-    gulp.watch(['src/*.html', './src/*.css'], [
+    gulp.watch(['./src/**/*.html', './src/**/*.css', '!./src/lib/**'], [
         'views'
     ]);
     gulp.watch('dist/**').on('change', livereload.changed);
@@ -67,7 +74,7 @@ gulp.task('watch', ['lint', 'browserify'], function() {
 // Dev task
 gulp.task('dev', ['watch'], function() {
     // Start webserver
-    server.start(9000);
+    server.start(config.port);
     // Start live reload
     livereload.listen();
 });

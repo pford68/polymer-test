@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../../lib/platform/platform.js"></script>
+    <link rel="import" href="../../lib/polymer/polymer.html">
+    <link rel="import" href="ui-panel.html">
+</head>
+<body>
+    <ui-panel style="color:red; top:150px; width:150px;">
+        This is panel content.
+    </ui-panel>
+
+    <ui-panel style="color:green; top:150px; width:150px; left: 200px">
+        <span>This is the first</span>
+        <span>This is the second</span>
+        <span>This is the third</span>
+    </ui-panel>
+
+    <ui-panel style="width: 200px; height: 200px; top:150px; left: 400px" data='[{ "position": [0,0], "color": "lime" } ]'>
+    </ui-panel>
+
+    <script>
+        window.addEventListener("polymer-ready", function(){
+            var panels = document.querySelectorAll("ui-panel");
+            panels[2].addEventListener("change", function(e){
+                console.log("In event listener", this.coordinates);
+            });
+
+
+            var data = [
+                    { "position": [10,-30], "color": "silver" },
+                    { "position": [38,-45], "color": "blue" }
+                ];
+            panels[2].setAttribute('data', JSON.stringify(data)); // Must stringify the data if using setAttribute.
+        });
+
+    </script>
+</body>
+</html>
