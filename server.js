@@ -9,7 +9,7 @@ app.use(methodOverride());
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
-app.use("/polymer-test", express.static(__dirname + "/dist/"));
+app.use("/polymer-test", express.static(__dirname + "/src/"));
 
 app.get("/preferences/:userId", function(req, res){
     var data = {};
