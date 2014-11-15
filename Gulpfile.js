@@ -47,28 +47,22 @@ gulp.task('browserify', function() {  /*
         .pipe(gulp.dest('dist'));
 });
 
-// Views task
-gulp.task('views', function() {
-    gulp.src([
-        './src/**/*.html',
-        './src/**/*.css',
-        '!./src/lib/**'
-    ], { base: './src' })
-        // Will be put in the dist/images folder
-        .pipe(gulp.dest('dist'));
-});
 
 // Watching for changes to JS src files.
 gulp.task('watch', ['lint', 'browserify'], function() {
     // Watch our scripts
-    gulp.watch(['./src/**/*.js', './src/**/*.json', '!./src/lib/**'],[
+    gulp.watch([
+        './src/**/*.js',
+        './src/**/*.json',
+        '!./src/lib/**'
+    ],[
         'lint',
         'browserify'
     ]);
-    gulp.watch(['./src/**/*.html', './src/**/*.css', '!./src/lib/**'], [
-        'views'
-    ]);
-    gulp.watch('dist/**').on('change', livereload.changed);
+    gulp.watch([
+        './src/components/**',
+        './src/examples/**'
+    ]).on('change', livereload.changed);
 });
 
 // Dev task
