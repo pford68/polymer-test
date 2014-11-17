@@ -1,0 +1,29 @@
+<link rel="import" href="../../lib/polymer/polymer.html">
+<link rel="import" href="../bootstrap/index.html">
+
+<polymer-element name="bootstrap-dropdown" class="dropdown">
+    <template>
+        <style>
+            :host { display: block; }
+        </style>
+        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" role="button"
+                aria-expanded="false">
+            Dropdown trigger
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </template>
+    <script type="text/javascript">
+        Polymer("bootstrap-dropdown", {
+            ready: function(){
+                console.log("dropdown-ready");
+            }
+        })
+    </script>
+</polymer-element>

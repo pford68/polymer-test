@@ -1,21 +1,24 @@
 <link rel="import" href="../../lib/polymer/polymer.html">
 <script src="../../lib/jquery/dist/jquery.min.js"></script>
 
-<polymer-element name="jquery-ajax" attributes="url" noscript>
+<polymer-element name="jquery-ajax" attributes="url">
     <template>
-        <div id="result" data-url="{{url}}"></div>
-        <script>
-            (function($){
-                var panel = document.getElementById("result");
-                var url = panel.getAttribute("data-url");
-                $.get(url).then(function(resp){
-                    if (Array.isArray(resp)){
-                        resp.forEach(function(item){
-                            panel.innerHTML += item.preference.name + ":  " + item.preference.value + "<br />";
-                        })
-                    }
-                });
-            })(jQuery);
-        </script>
+        <div id="result" data-url="{{url}}">{{response}}</div>
     </template>
+    <script>
+        (function($) {
+            Polymer('jquery-ajax', {
+                response: 'waiting...',
+                ready: function () {
+                    var url = this.$.result.getAttribute("data-url");
+                    var instance = this;
+                    console.log("url", url);
+                    $.get(url).then(function(resp){
+                        console.log("response", resp);
+                        instance.response = JSON.stringify(resp);
+                    });
+                }
+            })
+        })(jQuery);
+    </script>
 </polymer-element>
