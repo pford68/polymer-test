@@ -14,6 +14,8 @@ var gulp = require('gulp'),
     server = require("./server"),
     config = require('nconf');
 
+config.argv().env().file({ file: './config/default.json'});
+
 gulp.task('clean', function(done){
     del.sync('./build');
     done();
@@ -48,7 +50,7 @@ gulp.task("browserify", function(){
 
 
 // Watching for changes to JS src files.
-gulp.task('watch', ['lint', 'browserify'], function() {
+gulp.task('watch', ['lint'], function() {
     // Watch our scripts
     gulp.watch([
         './src/**/*.js',
@@ -67,7 +69,7 @@ gulp.task('watch', ['lint', 'browserify'], function() {
 // Dev task
 gulp.task('dev', ['watch'], function() {
     // Start webserver
-    server.start(config.port);
+    server.start(config.get("port"));
     // Start live reload
     livereload.listen();
 });
