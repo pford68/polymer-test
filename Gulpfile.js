@@ -7,15 +7,17 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     jshint = require('gulp-jshint'),
-    browserify = require('gulp-browserify'),
+    browserify = require('browserify'),
     concat = require('gulp-concat'),
     del = require('del'),
     livereload = require('gulp-livereload'),   // See Note 1 above
     server = require("./server"),
-    config = require('./config/dev.json');
+    config = require('nconf');
+
+config.argv().env().file({ file: './config/default.json'});
 
 gulp.task('clean', function(done){
-    del.sync('./dist');
+    del.sync('./build');
     done();
 });
 
@@ -27,29 +29,28 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-// Browserify task
-gulp.task('browserify', function() {  /*
-    // Single point of entry (make sure not to src ALL your files, browserify will figure it out for you)
-    gulp.src(['./src/js/main.js'])
-        .pipe(browserify({
-            insertGlobals: true,
-            debug: true
-        }))
-        // Bundle to a single file
-        .pipe(concat('bundle.js'))
-        // Output it to our dist folder
-        .pipe(gulp.dest('dist/js'));  */
-    gulp.src([
-        './src/**/*.js',
-        '!./src/lib/**/*.js'
-    ], { base: './src' })
-        // Will be put in the dist/images folder
-        .pipe(gulp.dest('dist'));
+/*
+ Browserify task.
+
+ Fetches dependencies, and compresses the resulting JS bundle if not in debug mode.
+ */
+gulp.task("browserify", function(){
+
+    var browserified = transform(function(filename) {
+        var b = browserify(filename, { debug: config.debug });
+        return b.bundle();
+    });
+
+    return gulp.src(['./src/js/main.js'])
+        .pipe(browserified)
+        .pipe(gulpif(config.debug === false, uglify()))
+        .pipe(rename('polymer-test.js'))
+        .pipe(gulp.dest('./build/js'));
 });
 
 
 // Watching for changes to JS src files.
-gulp.task('watch', ['lint', 'browserify'], function() {
+gulp.task('watch', ['lint'], function() {
     // Watch our scripts
     gulp.watch([
         './src/**/*.js',
@@ -68,7 +69,7 @@ gulp.task('watch', ['lint', 'browserify'], function() {
 // Dev task
 gulp.task('dev', ['watch'], function() {
     // Start webserver
-    server.start(config.port);
+    server.start(config.get("port"));
     // Start live reload
     livereload.listen();
 });
