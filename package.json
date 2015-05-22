@@ -2,7 +2,7 @@
   "name": "polymer-test",
   "version": "0.2.0",
   "devDependencies": {
-    "browserify": "^5.10.1",
+    "browserify": "^10.2.1",
     "del": "^0.1.3",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.3.4",
