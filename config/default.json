@@ -1,4 +1,4 @@
 {
-    "port": 9001,
+    "port": 3000,
     "message": "The is the config message"
 }
