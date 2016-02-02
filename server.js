@@ -2,6 +2,7 @@
 var express = require("express"),
     bodyParser = require("body-parser"),
     methodOverride = require("method-override"),
+    config = require("nconf"),
     app = express();
 
 app.use(methodOverride());
@@ -27,4 +28,5 @@ app.get("/preferences/:userId", function(req, res){
 exports.start = function(port){
     app.listen(port);
     console.log("Server listening on port " + port);
+    console.log(config.get("message"));
 };

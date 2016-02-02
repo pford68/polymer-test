@@ -14,7 +14,7 @@ var gulp = require('gulp'),
     server = require("./server"),
     config = require('nconf');
 
-config.argv().env().file({ file: './config/default.json'});
+config.argv().env().defaults({ file: './config/default.json'});
 
 gulp.task('clean', function(done){
     del.sync('./build');
