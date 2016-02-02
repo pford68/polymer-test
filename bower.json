@@ -1,0 +1,27 @@
+{
+  "name": "polymer-test",
+  "version": "0.1",
+  "homepage": "https://github.com/pford68/polymer-test",
+  "authors": [
+    "Philip Ford <pford68@earthlink.net>"
+  ],
+  "keywords": [
+    "polymer",
+    "web",
+    "components"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "paper-elements": "PolymerElements/paper-elements#~1.0.7",
+    "iron-elements": "PolymerElements/iron-elements#~1.0.8"
+  }
+}

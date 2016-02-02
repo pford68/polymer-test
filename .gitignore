@@ -3,10 +3,16 @@
 *.iml
 
 
-# Mac crap
+# Mac
 .DS_Store
 
 
 # Gulp
 build
 
+#NPM
+node_modules
+
+
+#Bower
+src/lib
