@@ -101,18 +101,18 @@ gulp.task('images', function () {
  */
 gulp.task('views', function(){
     return gulp.src([
-        './src/js/**/*.html'
-    ], { base: './src/js/components' })
-        .pipe(gulp.dest(gDestDir + "/views"));
+        './src/**//*.html'
+    ]).pipe(gulp.dest(gDestDir));
 });
 
 
 /*
  Copies angular templates to the build directory.
  */
-gulp.task('lib', function(){
+gulp.task('polymer', function(){
     return gulp.src([
-            './src/lib/*.html'
-        ], { base: './src/js/components' })
-        .pipe(gulp.dest(gDestDir + "/views"));
+            './src/lib/**/*.html',
+            './src/lib/**/*.js'
+        ])
+        .pipe(gulp.dest(gDestDir + "/lib"));
 });

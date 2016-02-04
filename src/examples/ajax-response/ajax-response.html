@@ -1,13 +1,19 @@
 <link rel="import" href="../../lib/polymer/polymer.html">
-<link rel="import" href="../../lib/core-ajax/core-ajax.html">
-<link rel="import" href="../../lib/core-icon/core-icon.html">
-<link rel="import" href="../../lib/core-icon-button/core-icon-button.html">
+<link rel="import" href="../../lib/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../lib/iron-icon/iron-icon.html">
+<link rel="import" href="../../lib/paper-icon-button/paper-icon-button.html">
 
-<polymer-element name="ajax-response" attributes="url" noscript>
+<dom-module name="ajax-response" attributes="url">
     <template>
-        <core-ajax url="{{url}}" auto response="{{resp}}"></core-ajax>
+        <iron-ajax url="{{url}}" auto lastResponse="{{resp}}"></iron-ajax>
         <textarea value="{{resp}}"></textarea>
-        <core-icon icon="account-box"></core-icon>
-        <core-icon-button icon="create"></core-icon-button>
+        <iron-icon icon="account-box"></iron-icon>
+        <paper-icon-button icon="create"></paper-icon-button>
     </template>
-</polymer-element>
+    <script>
+        Polymer({
+            /* this is the element's prototype */
+            is: 'ajax-response'
+        });
+    </script>
+</dom-module>
